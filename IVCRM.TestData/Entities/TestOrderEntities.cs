@@ -1,21 +1,26 @@
 ﻿using IVCRM.DAL.Entities;
 using IVCRM.DAL.Enums;
 
-namespace IVCRM.BLL.UnitTests.TestData.Entities
+namespace IVCRM.TestData.Entities
 {
-    internal static class TestOrderEntities
+    public static class TestOrderEntities
     {
-        internal static OrderEntity OrderEntity => new()
+        public static OrderEntity OrderEntity => new()
         {
-            Id = 1,
             Name = "Name",
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
         };
 
-        internal static OrderEntity OrderDetailsEntity => new()
+        public static OrderEntity UpdatedOrderEntity => new()
         {
-            Id = 1,
+            Name = "UpdatedName",
+            OrderStatus = OrderStatus.InProgress,
+            CustomerId = 1,
+        };
+
+        public static OrderEntity OrderDetailsEntity => new()
+        {
             Name = "Name",
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
@@ -23,7 +28,7 @@ namespace IVCRM.BLL.UnitTests.TestData.Entities
             ProductOrders = TestProductOrderEntities.ProductOrderEntityCollection,
         };
 
-        internal static List<OrderEntity> OrderEntityCollection => new ()
+        public static List<OrderEntity> OrderEntityCollection => new ()
         {
             OrderEntity,
         };

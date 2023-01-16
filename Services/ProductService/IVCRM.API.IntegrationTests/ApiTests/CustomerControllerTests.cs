@@ -1,6 +1,6 @@
 using System.Net;
-using IVCRM.API.IntegrationTests.TestData.Entities;
-using IVCRM.API.IntegrationTests.TestData.ViewModels;
+using IVCRM.TestData.Entities;
+using IVCRM.TestData.ViewModels;
 using IVCRM.API.ViewModels;
 using IVCRM.Core.Models;
 using IVCRM.Core;
@@ -76,7 +76,7 @@ namespace IVCRM.API.IntegrationTests.ApiTests
         public async Task GetById_DataExists_ReturnsViewModel()
         {
             //Arrange
-            var entity = TestCustomerEntities.CustomerDetailsModel;
+            var entity = TestCustomerEntities.CustomerDetailsEntity;
             var id = await AddToContext(entity);
             var viewModel = TestCustomerViewModels.CustomerDetailsViewModel;
             viewModel.Id = id;

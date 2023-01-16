@@ -1,21 +1,19 @@
 ﻿using IVCRM.BLL.Models;
 using IVCRM.BLL.Models.Enums;
 
-namespace IVCRM.BLL.UnitTests.TestData.Models
+namespace IVCRM.TestData.Models
 {
-    internal static class TestOrderModels
+    public static class TestOrderModels
     {
-        internal static Order OrderModel => new()
+        public static Order OrderModel => new()
         {
-            Id = 1,
             Name = "Name",
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
         };
 
-        internal static OrderDetails OrderDetailsModel => new()
+        public static OrderDetails OrderDetailsModel => new()
         {
-            Id = 1,
             Name = "Name",
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
@@ -24,7 +22,15 @@ namespace IVCRM.BLL.UnitTests.TestData.Models
 
         };
 
-        internal static List<Order> OrderModelCollection => new()
+        public static Order UpdatedOrderModel => new()
+        {
+            Name = "Name",
+            OrderStatus = OrderStatus.Created,
+            OrderDate = DateTime.MaxValue,
+            CustomerId = 1,
+        };
+
+        public static List<Order> OrderModelCollection => new()
         {
             OrderModel,
         };

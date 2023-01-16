@@ -1,10 +1,10 @@
 ﻿using IVCRM.BLL.Models;
 
-namespace IVCRM.BLL.UnitTests.TestData.Models
+namespace IVCRM.TestData.Models
 {
-    internal static class TestProductOrderModels
+    public static class TestProductOrderModels
     {
-        internal static ProductOrder ProductOrderModel => new()
+        public static ProductOrder ProductOrderModel => new()
         {
             ProductId = 1,
             OrderId = 1,
@@ -13,7 +13,7 @@ namespace IVCRM.BLL.UnitTests.TestData.Models
             Product = TestProductModels.ProductModel,
         };
 
-        internal static List<ProductOrder> ProductOrderModelCollection => new()
+        public static List<ProductOrder> ProductOrderModelCollection => new()
         {
             ProductOrderModel,
         };

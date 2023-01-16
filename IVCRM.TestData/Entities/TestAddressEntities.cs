@@ -1,10 +1,10 @@
 ﻿using IVCRM.DAL.Entities;
 
-namespace IVCRM.BLL.UnitTests.TestData.Entities
+namespace IVCRM.TestData.Entities
 {
-    internal static class TestAddressEntities
+    public static class TestAddressEntities
     {
-        internal static AddressEntity AddressEntity => new()
+        public static AddressEntity AddressEntity => new()
         {
             Id = 1,
             Street = "123 Main Street",
@@ -13,7 +13,7 @@ namespace IVCRM.BLL.UnitTests.TestData.Entities
             ZipCode = "10001"
         };
 
-        internal static List<AddressEntity> AddressEntityCollection => new ()
+        public static List<AddressEntity> AddressEntityCollection => new ()
         {
             AddressEntity,
         };

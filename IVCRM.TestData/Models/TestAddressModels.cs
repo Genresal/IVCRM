@@ -1,10 +1,10 @@
 ﻿using IVCRM.BLL.Models;
 
-namespace IVCRM.BLL.UnitTests.TestData.Models
+namespace IVCRM.TestData.Models
 {
-    internal static class TestAddressModels
+    public static class TestAddressModels
     {
-        internal static Address AddressModel => new()
+        public static Address AddressModel => new()
         {
             Id = 1,
             Street = "123 Main Street",
@@ -13,7 +13,7 @@ namespace IVCRM.BLL.UnitTests.TestData.Models
             ZipCode = "10001"
         };
 
-        internal static List<Address> AddressModelCollection => new ()
+        public static List<Address> AddressModelCollection => new ()
         {
             AddressModel,
         };

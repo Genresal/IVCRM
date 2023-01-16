@@ -1,10 +1,10 @@
 ﻿using IVCRM.DAL.Entities;
 
-namespace IVCRM.DAL.IntegrationTests.TestData.Entities
+namespace IVCRM.TestData.Entities
 {
-    internal static class TestProductOrderEntities
+    public static class TestProductOrderEntities
     {
-        internal static ProductOrderEntity ProductOrderEntity => new()
+        public static ProductOrderEntity ProductOrderEntity => new()
         {
             ProductId = 1,
             OrderId = 1,
@@ -13,7 +13,7 @@ namespace IVCRM.DAL.IntegrationTests.TestData.Entities
             Product = TestProductEntities.ProductEntity,
         };
 
-        internal static List<ProductOrderEntity> ProductOrderEntityCollection => new()
+        public static List<ProductOrderEntity> ProductOrderEntityCollection => new()
         {
             ProductOrderEntity,
         };

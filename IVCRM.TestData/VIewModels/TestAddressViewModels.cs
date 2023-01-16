@@ -1,10 +1,10 @@
 ﻿using IVCRM.API.ViewModels;
 
-namespace IVCRM.API.IntegrationTests.TestData.ViewModels
+namespace IVCRM.TestData.ViewModels
 {
-    internal static class TestAddressViewModels
+    public static class TestAddressViewModels
     {
-        internal static AddressViewModel ValidAddressViewModel => new()
+        public static AddressViewModel ValidAddressViewModel => new()
         {
             Id = 1,
             Street = "123 Main Street",
@@ -13,7 +13,7 @@ namespace IVCRM.API.IntegrationTests.TestData.ViewModels
             ZipCode = "10001"
         };
 
-        internal static ChangeAddressViewModel ValidChangeAddressViewModel => new()
+        public static ChangeAddressViewModel ValidChangeAddressViewModel => new()
         {
             Street = "123 Main Street",
             City = "New York",

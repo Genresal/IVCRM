@@ -1,12 +1,11 @@
 ﻿using IVCRM.Core;
 using IVCRM.DAL.Entities;
-using IVCRM.DAL.integrationTests.TestData.Entities;
 
-namespace IVCRM.DAL.IntegrationTests.TestData.Entities
+namespace IVCRM.TestData.Entities
 {
-    internal static class TestCustomerEntities
+    public static class TestCustomerEntities
     {
-        internal static CustomerEntity CustomerEntity => new()
+        public static CustomerEntity CustomerEntity => new()
         {
             FirstName = "FirstName",
             LastName = "LastName",
@@ -14,7 +13,7 @@ namespace IVCRM.DAL.IntegrationTests.TestData.Entities
             PhoneNumber = "+1234567",
         };
 
-        internal static CustomerEntity CustomerDetailsModel => new()
+        public static CustomerEntity CustomerDetailsEntity => new()
         {
             FirstName = "FirstName",
             LastName = "LastName",
@@ -25,7 +24,7 @@ namespace IVCRM.DAL.IntegrationTests.TestData.Entities
             Orders = TestOrderEntities.OrderEntityCollection,
         };
 
-        internal static CustomerEntity UpdatedCustomerEntity => new()
+        public static CustomerEntity UpdatedCustomerEntity => new()
         {
             FirstName = "UpdatedFirstName",
             LastName = "UpdatedLastName",
@@ -33,12 +32,12 @@ namespace IVCRM.DAL.IntegrationTests.TestData.Entities
             PhoneNumber = "+1234567",
         };
 
-        internal static List<CustomerEntity> CustomerEntityCollection => new ()
+        public static List<CustomerEntity> CustomerEntityCollection => new ()
         {
             CustomerEntity,
         };
 
-        internal static PagedList<CustomerEntity> PaginatedEntityCollection => new()
+        public static PagedList<CustomerEntity> PaginatedEntityCollection => new()
         {
             PageSize = 10,
             CurrentPage = 0,
