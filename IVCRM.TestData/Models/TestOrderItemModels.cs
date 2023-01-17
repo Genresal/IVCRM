@@ -2,9 +2,9 @@
 
 namespace IVCRM.TestData.Models
 {
-    public static class TestProductOrderModels
+    public static class TestOrderItemModels
     {
-        public static ProductOrder ProductOrderModel => new()
+        public static OrderItem OrderItemModel => new()
         {
             ProductId = 1,
             OrderId = 1,
@@ -13,9 +13,9 @@ namespace IVCRM.TestData.Models
             Product = TestProductModels.ProductModel,
         };
 
-        public static List<ProductOrder> ProductOrderModelCollection => new()
+        public static List<OrderItem> ProductOrderModelCollection => new()
         {
-            ProductOrderModel,
+            OrderItemModel,
         };
     }
 }

@@ -18,7 +18,7 @@ namespace IVCRM.TestData.ViewModels
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
             Customer = TestCustomerViewModels.ValidCustomerViewModel,
-            ProductOrders = TestProductOrderViewModels.ProductOrderViewModelCollection,
+            OrderItems = TestOrderItemViewModels.ProductOrderViewModelCollection,
         };
 
         public static OrderViewModel UpdatedOrderViewModel => new()

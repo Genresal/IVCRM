@@ -6,6 +6,7 @@ using IVCRM.TestData.Entities;
 using IVCRM.TestData.Models;
 using IVCRM.TestData.ViewModels;
 using IVCRM.DAL.Entities;
+using TestOrderItemModels = IVCRM.TestData.ViewModels.TestOrderItemModels;
 
 namespace IVCRM.BLL.UnitTests.MappingTests
 {
@@ -50,7 +51,7 @@ namespace IVCRM.BLL.UnitTests.MappingTests
         {
             //Arrange 
             var model = TestProductModels.ProductModel;
-            var viewModel = TestProductViewModels.ValidProductViewModel;
+            var viewModel = TestOrderItemModels.ValidProductViewModel;
 
             var config = new MapperConfiguration(cfg => cfg.AddProfile<ApiMappingProfile>());
             var mapper = config.CreateMapper();
@@ -66,7 +67,7 @@ namespace IVCRM.BLL.UnitTests.MappingTests
         public void Map_ChangeViewModel_ReturnsModel()
         {
             //Arrange 
-            var viewModel = TestProductViewModels.ValidChangeProductViewModel;
+            var viewModel = TestOrderItemModels.ValidChangeProductViewModel;
             var model = TestProductModels.ProductModel;
 
             var config = new MapperConfiguration(cfg => cfg.AddProfile<ApiMappingProfile>());

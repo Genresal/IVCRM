@@ -11,11 +11,11 @@ namespace IVCRM.API.IntegrationTests.ApiTests
         public async Task Create_ValidViewModel_ReturnsViewModel()
         {
             //Arrange
-            var viewModel = TestProductViewModels.ValidProductViewModel;
+            var viewModel = TestOrderItemModels.ValidProductViewModel;
             var entity = TestProductEntities.ProductEntity;
 
             using var request = new HttpRequestMessage(HttpMethod.Post, $"/api/product");
-            request.AddContent(TestProductViewModels.ValidChangeProductViewModel);
+            request.AddContent(TestOrderItemModels.ValidChangeProductViewModel);
 
             //Act
             var actualResult = await Client.SendAsync(request);
@@ -52,7 +52,7 @@ namespace IVCRM.API.IntegrationTests.ApiTests
         {
             //Arrange
             var entityCollection = TestProductEntities.ProductEntityCollection;
-            var viewModelCollection = TestProductViewModels.ValidProductViewModelCollection;
+            var viewModelCollection = TestOrderItemModels.ValidProductViewModelCollection;
             var entitiesCount = entityCollection.Count;
 
             await AddRangeToContext(entityCollection);
@@ -75,7 +75,7 @@ namespace IVCRM.API.IntegrationTests.ApiTests
             //Arrange
             var entity = TestProductEntities.ProductEntity;
             var id = await AddToContext(entity);
-            var viewModel = TestProductViewModels.ValidProductViewModel;
+            var viewModel = TestOrderItemModels.ValidProductViewModel;
             viewModel.Id = id;
 
             using var request = new HttpRequestMessage(HttpMethod.Get, $"/api/product/{id}");
@@ -96,12 +96,12 @@ namespace IVCRM.API.IntegrationTests.ApiTests
             var entity = TestProductEntities.ProductEntity;
             var id = await AddToContext(entity);
             var expectedEntity = TestProductEntities.UpdatedProductEntity;
-            var expectedViewModel = TestProductViewModels.UpdatedProductViewModel;
+            var expectedViewModel = TestOrderItemModels.UpdatedProductViewModel;
             expectedViewModel.Id = id;
             expectedEntity.Id = id;
 
             using var request = new HttpRequestMessage(HttpMethod.Put, $"/api/product/{id}");
-            request.AddContent(TestProductViewModels.UpdatedChangeProductViewModel);
+            request.AddContent(TestOrderItemModels.UpdatedChangeProductViewModel);
 
             //Act
             var actualResult = await Client.SendAsync(request);

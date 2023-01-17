@@ -2,9 +2,9 @@
 
 namespace IVCRM.TestData.Entities
 {
-    public static class TestProductOrderEntities
+    public static class TestOrderItemEntities
     {
-        public static ProductOrderEntity ProductOrderEntity => new()
+        public static OrderItemEntity OrderItemEntity => new()
         {
             ProductId = 1,
             OrderId = 1,
@@ -13,9 +13,9 @@ namespace IVCRM.TestData.Entities
             Product = TestProductEntities.ProductEntity,
         };
 
-        public static List<ProductOrderEntity> ProductOrderEntityCollection => new()
+        public static List<OrderItemEntity> ProductOrderEntityCollection => new()
         {
-            ProductOrderEntity,
+            OrderItemEntity,
         };
     }
 }

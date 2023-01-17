@@ -2,20 +2,20 @@
 
 namespace IVCRM.TestData.ViewModels
 {
-    internal static class TestProductOrderViewModels
+    internal static class TestOrderItemViewModels
     {
-        internal static ProductOrderViewModel ProductOrderViewModel => new()
+        internal static OrderItemViewModel OrderItemViewModel => new()
         {
             ProductId = 1,
             OrderId = 1,
             Price = 1,
             Quantity = 1,
-            Product = TestProductViewModels.ValidProductViewModel,
+            Product = TestOrderItemModels.ValidProductViewModel,
         };
 
-        internal static List<ProductOrderViewModel> ProductOrderViewModelCollection => new()
+        internal static List<OrderItemViewModel> ProductOrderViewModelCollection => new()
         {
-            ProductOrderViewModel,
+            OrderItemViewModel,
         };
     }
 }

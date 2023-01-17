@@ -25,7 +25,7 @@ namespace IVCRM.TestData.Entities
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
             Customer = TestCustomerEntities.CustomerEntity,
-            ProductOrders = TestProductOrderEntities.ProductOrderEntityCollection,
+            OrderItems = TestOrderItemEntities.ProductOrderEntityCollection,
         };
 
         public static List<OrderEntity> OrderEntityCollection => new ()

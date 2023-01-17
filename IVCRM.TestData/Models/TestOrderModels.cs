@@ -18,7 +18,7 @@ namespace IVCRM.TestData.Models
             OrderStatus = OrderStatus.Created,
             CustomerId = 1,
             Customer = TestCustomerModels.CustomerModel,
-            ProductOrders = TestProductOrderModels.ProductOrderModelCollection
+            OrderItems = TestOrderItemModels.ProductOrderModelCollection
 
         };
 
