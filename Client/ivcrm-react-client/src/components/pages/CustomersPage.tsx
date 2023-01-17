@@ -10,8 +10,8 @@ function CustomersPage() {
   return (
     <Box>
       <Stack padding={2} spacing={2}>
-      <ModalWrapper icon={<Add />}>
-            <CreateCustomerForm/>
+        <ModalWrapper icon={<Add />}>
+          <CreateCustomerForm/>
         </ModalWrapper>
         <CustomerTable/>
       </Stack>

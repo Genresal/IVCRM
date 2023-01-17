@@ -65,7 +65,7 @@ namespace IVCRM.API.IntegrationTests.ApiTests
             //Act
             var actualResult = await Client.SendAsync(request);
             var responseResult = actualResult.GetResponseResult<PagedList<CustomerViewModel>>();
-            viewModelCollection.Select(x => x.Id = responseResult.Data.First(z => z.FullName == x.FullName).Id).ToList();
+            viewModelCollection.Select(x => x.Id = responseResult.Data.First(z => z.FirstName == x.FirstName).Id).ToList();
 
             //Assert
             actualResult.StatusCode.ShouldBe(HttpStatusCode.OK);

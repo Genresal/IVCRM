@@ -4,6 +4,7 @@ import Refresh from "../components/authorization/Refresh";
 import CatalogPage from "../components/pages/CatalogPage";
 import CategoriesPage from "../components/pages/CategoriesPage";
 import CustomersPage from "../components/pages/CustomersPage";
+import CustomerDetailsPage from "../components/pages/CustomerDetailsPage";
 import HomePage from "../components/pages/HomePage";
 import OrderDetailsPage from "../components/pages/OrderDetailsPage";
 import OrdersPage from "../components/pages/OrdersPage";
@@ -22,6 +23,7 @@ export const privateRoutes: routerType[] = [
     { title: "ProductDetails", path: '/products/:productId',  element: <ProductDetailsPage />},
     { title: "Categories", path: '/categories', element: <CategoriesPage />},
     { title: "Customer", path: '/customers', element: <CustomersPage />},
+    { title: "CustomerDetails", path: '/customers/:customerId',  element: <CustomerDetailsPage />},
     { title: "Order", path: '/orders',  element: <OrdersPage />},
     { title: "OrderDetails", path: '/orders/:orderId',  element: <OrderDetailsPage />},
     { title: "Callback", path: '/callback',  element: <Callback />},

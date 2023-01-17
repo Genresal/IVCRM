@@ -15,7 +15,6 @@ namespace IVCRM.TestData.Models
 
         public static CustomerDetails CustomerDetailsModel => new()
         {
-            Id = 1,
             FirstName = "FirstName",
             LastName = "LastName",
             Email = "Email",

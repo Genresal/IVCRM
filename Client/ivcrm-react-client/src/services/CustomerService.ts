@@ -1,5 +1,6 @@
 import { IChangeCustomer } from "../models/IChangeCustomer";
 import { ICustomer } from "../models/ICustomer";
+import { ICustomerDetails } from "../models/ICustomerDetails";
 import { IPagedList } from "../models/IPagedList";
 import { ITableParameters } from "../models/ITableParameters";
 import axiosInstance from "./AxiosInstance";
@@ -26,7 +27,7 @@ export default class CustomerService {
     }
 
     static async getById(id: number) {
-        const response = await axiosInstance.get<ICustomer>(`/customer/${id}`)
+        const response = await axiosInstance.get<ICustomerDetails>(`/customer/${id}`)
         return response.data;
     }
 }

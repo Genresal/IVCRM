@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,26 +8,20 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchOrders } from '../../store/reducers/orders/ActionCreators';
 import ModalWrapper from '../buildingBlocks/ModalWrapper';
 import Edit from '@mui/icons-material/Edit';
 import Delete from '@mui/icons-material/Delete';
 import UpdateOrderForm from './forms/UpdateOrderForm';
 import DeleteOrderForm from './forms/DeleteOrderForm';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
+import { IOrder } from '../../models/IOrder';
 
-const OrderTable = () => {
+interface Props {
+  orders: IOrder[]
+}
 
-  const {orders, isLoading, error} = useAppSelector(state => state.orderReducer)
-  const dispatch = useAppDispatch()
+const OrderTable: React.FC<Props> = ({ orders }) => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(fetchOrders())
-  }, [])
 
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
     navigate(`/orders/${id}`)
@@ -43,9 +37,6 @@ const OrderTable = () => {
         >
           Orders
       </Typography>
-
-      {isLoading && <CircularProgress />}
-      {error && <h1>{error}</h1>}
 
       <hr />
       <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>

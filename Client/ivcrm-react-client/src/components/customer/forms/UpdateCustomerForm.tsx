@@ -14,8 +14,7 @@ const UpdateCustomerForm = () => {
   const {data} = useAppSelector(state => state.modalReducer)
   var customer = data as ICustomer
 
-  const names = customer.fullName.split(" ");
-  const [changeCustomer, setChangeCustomer] = useState<IChangeCustomer>({id: customer.id, firstName: names[0], lastName: names[1], phoneNumber: customer.phoneNumber, email: customer.email})
+  const [changeCustomer, setChangeCustomer] = useState<IChangeCustomer>({} as IChangeCustomer)
   const dispatch = useAppDispatch()
 
     const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {

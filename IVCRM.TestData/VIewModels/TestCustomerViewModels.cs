@@ -7,14 +7,14 @@ namespace IVCRM.TestData.ViewModels
     {
         public static CustomerViewModel ValidCustomerViewModel => new()
         {
-            FullName = "FirstName LastName",
+            FirstName = "FirstName",
+            LastName = "LastName",
             Email = "Email",
             PhoneNumber = "+1234567",
         };
 
         public static CustomerDetailsViewModel CustomerDetailsViewModel => new()
         {
-            Id = 1,
             FirstName = "FirstName",
             LastName = "LastName",
             Email = "Email",
@@ -31,8 +31,8 @@ namespace IVCRM.TestData.ViewModels
 
         public static CustomerViewModel UpdatedCustomerViewModel => new()
         {
-            Id = 1,
-            FullName = "UpdatedFirstName UpdatedLastName",
+            FirstName = "UpdatedFirstName",
+            LastName = "UpdatedLastName",
             Email = "Email",
             PhoneNumber = "+1234567",
         };

@@ -1,38 +1,46 @@
 import { CardContent, Typography } from "@mui/material";
-import { ICustomer } from "../../models/ICustomer";
+import { IAddress } from "../../models/IAddress";
 import { StyledCard } from "../buildingBlocks/StyledComponents";
 
 interface Props {
-    customer: ICustomer
+    address: IAddress
 }
 
-const CustomerDetails: React.FC<Props> = ({ customer }) => {
+const AddressDetails: React.FC<Props> = ({ address }) => {
 
 return (
 <StyledCard>
     <CardContent>
     <Typography variant="h5" component="div">
-        Customer info
+        Address
     </Typography>
     <hr/>
+    {address ?
+        <>
     <Typography variant="body2">
-        Id: {customer.id}
+        Id: {address.id}
     </Typography>
     <Typography variant="body2">
-        First Name: {customer.firstName}
+        Street: {address.street}
     </Typography>
     <Typography variant="body2">
-        Last Name: {customer.lastName}
+        City: {address.city}
     </Typography>
     <Typography variant="body2">
-        Phonenumber: {customer.phoneNumber}
+        State: {address.state}
     </Typography>
     <Typography variant="body2">
-        Email: {customer.email}
+        Zip code: {address.zipCode}
     </Typography>
+        </>
+      : 
+      <Typography variant="body2">
+      No address provided.
+  </Typography>}
+
     </CardContent>
 </StyledCard>
 );
 }
 
-export default CustomerDetails;
+export default AddressDetails;

@@ -8,8 +8,7 @@ namespace IVCRM.API.Profiles
     {
         public ApiMappingProfile()
         {
-            CreateMap<Customer, CustomerViewModel>()
-                .ForMember(dest => dest.FullName, y => y.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+            CreateMap<Customer, CustomerViewModel>();
             CreateMap<PagedList<Customer>, PagedList<CustomerViewModel>>().ReverseMap();
             CreateMap<ChangeCustomerViewModel, Customer>();
             CreateMap<CustomerDetails, CustomerDetailsViewModel>();

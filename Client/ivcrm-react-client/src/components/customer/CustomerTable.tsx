@@ -15,12 +15,14 @@ import ModalWrapper from '../buildingBlocks/ModalWrapper';
 import { Delete, Edit } from '@mui/icons-material';
 import UpdateCustomerForm from './forms/UpdateCustomerForm';
 import DeleteCustomerForm from './forms/DeleteCustomerForm';
+import { useNavigate } from 'react-router-dom';
 
 
 const CustomerTable = () => {
 
-  const {paginationData, customers, isLoading, error} = useAppSelector(state => state.customerReducer)
-  const dispatch = useAppDispatch()
+  const {paginationData, customers, isLoading, error} = useAppSelector(state => state.customerReducer);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handlePageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     var pageSize = (parseInt(event.target.value, 10))
@@ -30,6 +32,10 @@ const CustomerTable = () => {
   const handlePageSizeChange = (event: unknown, newPage: number) => {
     dispatch(fetchCustomers({ pageNumber: newPage, pageSize: paginationData.pageSize}))
   };
+
+  const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    navigate(`/customers/${id}`)
+  }
 
   useEffect(() => {
     dispatch(fetchCustomers({ pageNumber: paginationData.currentPage, pageSize: paginationData.pageSize}))
@@ -65,12 +71,13 @@ const CustomerTable = () => {
           {customers.map((row) => (
             <TableRow
               key={row.id}
+              onClick={(event) => handleClick(event, row.id)}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
-              <TableCell align="right">{row.fullName}</TableCell>
+              <TableCell align="right">{`${row.firstName} ${row.lastName}`}</TableCell>
               <TableCell align="right">{row.phoneNumber}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
               <TableCell align="right">

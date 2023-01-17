@@ -3,11 +3,14 @@ import { IPagedList } from "../../../models/IPagedList";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { createCustomer, deleteCustomer, getCustomerById, fetchCustomers, updateCustomer } from "./ActionCreators";
 import { IPaginationData } from "../../../models/IPaginationData";
+import { ICustomerDetails } from "../../../models/ICustomerDetails";
+import { IAddress } from "../../../models/IAddress";
+import { IOrder } from "../../../models/IOrder";
 
 interface ICustomerState {
     paginationData: IPaginationData;
     customers: ICustomer[];
-    customer: ICustomer;
+    customer: ICustomerDetails;
     isLoading: boolean;
     error: string;
 }
@@ -15,7 +18,7 @@ interface ICustomerState {
 const initialState: ICustomerState = {
     paginationData: {pageSize: 10, currentPage: 0, totalCount: 0, totalPages: 0} as IPaginationData,
     customers: [],
-    customer: {} as ICustomer,
+    customer: {address: {} as IAddress, orders: new Array<IOrder>} as ICustomerDetails,
     isLoading: false,
     error: '',
 }
@@ -43,7 +46,7 @@ export const customerSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
-        [getCustomerById.fulfilled.type]: (state, action: PayloadAction<ICustomer>) => {
+        [getCustomerById.fulfilled.type]: (state, action: PayloadAction<ICustomerDetails>) => {
             state.isLoading = false;
             state.error = '';
             state.customer = action.payload;
