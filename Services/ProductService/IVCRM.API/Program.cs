@@ -1,23 +1,15 @@
 using FluentValidation;
-using IVCRM.API.Filters;
+using FluentValidation.AspNetCore;
+using IVCRM.API;
 using IVCRM.API.Middlewares;
-using IVCRM.API.Profiles;
 using IVCRM.BLL;
-using IVCRM.BLL.Profiles;
+using IVCRM.BLL.AutoMapper;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using System.Reflection;
-using IVCRM.API;
-using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile<ApiMappingProfile>();
-    cfg.AddProfile<BllMappingProfile>();
-});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -34,6 +26,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 builder.Services.AddServices(builder.Configuration);
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).GetTypeInfo().Assembly);
 
 builder.Services.AddCors(opt =>
 {
@@ -53,7 +47,8 @@ builder.Services.AddMassTransit(x =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+// Add Fluent validator
+builder.Services.AddValidatorsFromAssemblyContaining<Program>().AddFluentValidationAutoValidation();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerWithSecurity(builder.Configuration);
@@ -85,3 +80,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

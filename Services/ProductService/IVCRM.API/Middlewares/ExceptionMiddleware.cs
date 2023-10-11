@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using IVCRM.BLL.Exceptions;
 using System.Net;
 
 namespace IVCRM.API.Middlewares
@@ -18,10 +17,6 @@ namespace IVCRM.API.Middlewares
             try
             {
                 await _next.Invoke(context);
-            }
-            catch (ResourceNotFoundException ex)
-            {
-                HandleResourceException(context);
             }
             catch (ValidationException ex)
             {

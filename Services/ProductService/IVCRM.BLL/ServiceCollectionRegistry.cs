@@ -1,5 +1,8 @@
-﻿using IVCRM.BLL.Services;
-using IVCRM.BLL.Services.Interfaces;
+﻿using IVCRM.BLL.Managers;
+using IVCRM.BLL.Models.Products;
+using IVCRM.BLL.Services;
+using IVCRM.DAL;
+using IVCRM.DAL.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,12 +18,9 @@ namespace IVCRM.BLL
             services.AddEntityFrameworkSetup(configuration);
             services.AddRepositories();
 
-            services.AddTransient<ICustomerService, CustomerService>();
-            services.AddTransient<IAddressService, AddressService>();
-            services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<IOrderService, OrderService>();
-            services.AddTransient<IProductCategoryService, ProductCategoryService>();
-            services.AddTransient<IPictureService> (x => new AzurePictureService(azureConnectionString));
+            services.AddTransient<IManager<BaseProduct>, Manager<BaseProduct, Product>>();
+
+            services.AddTransient<AzurePictureService>(x => new AzurePictureService(azureConnectionString));
         }
     }
 }
