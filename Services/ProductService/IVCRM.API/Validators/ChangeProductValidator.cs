@@ -1,15 +1,12 @@
 ﻿using FluentValidation;
-using IVCRM.API.ViewModels;
+using IVCRM.BLL.Models.Products;
 
-namespace IVCRM.API.Validators
+namespace IVCRM.API.Validators;
+
+public class CreateProductValidator : AbstractValidator<CreateProductRequest>
 {
-    public class ChangeProductValidator :AbstractValidator<ChangeProductViewModel>
+    public CreateProductValidator()
     {
-        public ChangeProductValidator()
-        {
-            RuleFor(product => product.Name).NotNull().NotEmpty().Length(1, 250);
-            RuleFor(product => product.Price).NotNull().NotEmpty();
-            RuleFor(product => product.CategoryId).NotNull().NotEmpty();
-        }
+        RuleFor(product => product.Name).NotNull().NotEmpty().Length(3, 50);
     }
 }

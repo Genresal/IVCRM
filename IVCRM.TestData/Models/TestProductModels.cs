@@ -1,4 +1,4 @@
-﻿using IVCRM.BLL.Models;
+﻿using IVCRM.BLL.Models.Products;
 
 namespace IVCRM.TestData.Models
 {

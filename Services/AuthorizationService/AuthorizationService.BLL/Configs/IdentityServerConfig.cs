@@ -1,8 +1,6 @@
 ﻿using AuthorizationService.DAL.Entities;
-using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
-using Microsoft.AspNetCore.Identity;
 using static IdentityServer4.Models.IdentityResources;
 using Role = AuthorizationService.DAL.Enums.Role;
 

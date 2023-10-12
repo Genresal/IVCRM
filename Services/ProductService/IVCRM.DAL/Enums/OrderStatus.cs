@@ -1,10 +1,9 @@
-﻿namespace IVCRM.DAL.Enums
+﻿namespace IVCRM.DAL.Enums;
+
+public enum OrderStatus
 {
-    public enum OrderStatus
-    {
-        Created = 0,
-        InProgress,
-        Completed,
-        Closed,
-    }
+    Created = 0,
+    InProgress,
+    Completed,
+    Closed,
 }

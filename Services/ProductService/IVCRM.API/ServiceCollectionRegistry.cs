@@ -7,6 +7,7 @@ namespace IVCRM.API
     {
         private const string AuthorizationUrl = "Authorization:AuthorizationUrl";
         private const string TokenUrl = "Authorization:TokenUrl";
+
         public static void AddSwaggerWithSecurity(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(options =>

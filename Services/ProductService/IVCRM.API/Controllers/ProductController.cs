@@ -1,93 +1,59 @@
-using AutoMapper;
-using FluentValidation;
-using IVCRM.API.Validators;
-using IVCRM.API.ViewModels;
-using IVCRM.BLL.Models;
-using IVCRM.BLL.Services.Interfaces;
+using IVCRM.BLL.Managers;
+using IVCRM.BLL.Models.Products;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
-namespace IVCRM.API.Controllers
+namespace IVCRM.API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    private readonly IManager<BaseProduct> _productManager;
+    private readonly ILogger<ProductController> _logger;
+
+    public ProductController(IManager<BaseProduct> productManager,
+        ILogger<ProductController> logger)
     {
-        private const string PicturesCategory = "products";
+        _productManager = productManager;
+        _logger = logger;
+    }
 
-        private readonly IProductService _productService;
-        private readonly IPictureService _pictureService;
-        private readonly IMapper _mapper;
-        private readonly ChangeProductValidator _changeProductValidator;
-        private readonly LoadPictureValidator _loadPictureValidator;
+    [HttpPost]
+    public async Task<ActionResult<ProductResponse>> CreateProductAsync([FromBody] CreateProductRequest request)
+    {
+        return Ok(await _productManager.CreateAsync(request, HttpContext.RequestAborted));
+    }
 
-        public ProductController(IProductService productService,
-            IPictureService pictureService,
-            IMapper mapper,
-            ChangeProductValidator changeProductValidator,
-            LoadPictureValidator loadPictureValidator)
-        {
-            _productService = productService;
-            _pictureService = pictureService;
-            _mapper = mapper;
-            _changeProductValidator = changeProductValidator;
-            _loadPictureValidator = loadPictureValidator;
-        }
+    [HttpPut]
+    public async Task<ActionResult<ProductResponse>> UpdateProductAsync([FromBody] UpdateProductRequest request)
+    {
+        _logger.LogInformation(
+            @"Update the product with id: {id} 
+                with the data : {data}",
+            request.Id,
+            JsonSerializer.Serialize(request));
 
-        [HttpPost]
-        public async Task<ProductViewModel> Create([FromBody] ChangeProductViewModel viewModel)
-        {
-            await _changeProductValidator.ValidateAndThrowAsync(viewModel);
-            
-            var model = _mapper.Map<Product>(viewModel);
-            var result = await _productService.Create(model);
+        return Ok(await _productManager.UpdateAsync(request, HttpContext.RequestAborted));
+    }
 
-            return _mapper.Map<ProductViewModel>(result);
-        }
+    [HttpGet]
+    public async Task<IActionResult> GetProductsAsync([FromQuery] ProductRequest request)
+    {
+        return Ok(await _productManager.GetPagedAsync(request, HttpContext.RequestAborted));
+    }
 
-        [HttpGet]
-        public async Task<IEnumerable<ProductViewModel>> GetAll()
-        {
-            var result = await _productService.GetAll();
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetProductAsync([FromRoute] long id)
+    {
+        return Ok(await _productManager.GetDetailsAsync(id, HttpContext.RequestAborted));
+    }
 
-            return _mapper.Map<IEnumerable<ProductViewModel>>(result);
-        }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProductAsync([FromRoute] long id)
+    {
+        await _productManager.DeleteAsync(id, HttpContext.RequestAborted);
 
-        [HttpGet("{id}")]
-        public async Task<ProductViewModel> GetById(int id)
-        {
-            var model = await _productService.GetById(id);
-
-            return _mapper.Map<ProductViewModel>(model);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ProductViewModel> Update(int id, [FromBody] ChangeProductViewModel viewModel)
-        {
-            await _changeProductValidator.ValidateAndThrowAsync(viewModel);
-
-            var model = _mapper.Map<Product>(viewModel);
-            model.Id = id;
-
-            var result = await _productService.Update(model);
-
-            return _mapper.Map<ProductViewModel>(result);
-        }
-        
-        [HttpPost("picture")]
-        public async Task UploadPicture([FromForm] LoadPictureViewModel request)
-        {
-            await _loadPictureValidator.ValidateAndThrowAsync(request);
-
-            var pictureUri = await _pictureService.UploadPictureAsync(PicturesCategory, request.Id.ToString(), request.Picture!.OpenReadStream());
-
-            await _productService.UpdatePictureUri(request.Id, pictureUri);
-        }
-        
-        [HttpDelete("{id}")]
-        public async Task Delete(int id)
-        {
-            await _productService.Delete(id);
-            await _pictureService.DeletePictureAsync(PicturesCategory, id.ToString());
-        }
+        return Ok();
     }
 }

@@ -1,5 +1,5 @@
-﻿using IVCRM.BLL.Models;
-using IVCRM.BLL.Models.Enums;
+﻿using IVCRM.BLL.Enums;
+using IVCRM.BLL.Models;
 
 namespace IVCRM.TestData.Models
 {
